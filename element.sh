@@ -16,11 +16,11 @@ INPUT=$1
 if [[ $INPUT =~ ^[0-9]+$ ]]
 then
   # Input is atomic number
-  # QUERY="SELECT e.atomic_number, e.name, e.symbol, t.type, p.atomic_mass, p.melting_point_celsius, p.boiling_point_celsius
-  #        FROM elements e
-  #        JOIN properties p ON e.atomic_number = p.atomic_number
-  #        JOIN types t ON p.type_id = t.type_id
-  #        WHERE e.atomic_number = $INPUT;"
+  QUERY="SELECT e.atomic_number, e.name, e.symbol, t.type, p.atomic_mass, p.melting_point_celsius, p.boiling_point_celsius
+         FROM elements e
+         JOIN properties p ON e.atomic_number = p.atomic_number
+         JOIN types t ON p.type_id = t.type_id
+         WHERE e.atomic_number = $INPUT;"
 else
   # Input is symbol or name (case-insensitive)
   QUERY="SELECT e.atomic_number, e.name, e.symbol, t.type, p.atomic_mass, p.melting_point_celsius, p.boiling_point_celsius
